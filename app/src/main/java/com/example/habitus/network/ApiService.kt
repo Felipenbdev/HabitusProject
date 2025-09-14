@@ -1,5 +1,7 @@
-package com.example.habitus
+package com.example.habitus.network
 
+import com.example.habitus.entities.Tarefa
+import com.example.habitus.entities.Usuario
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.DELETE

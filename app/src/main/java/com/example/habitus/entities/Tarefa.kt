@@ -1,4 +1,4 @@
-package com.example.habitus
+package com.example.habitus.entities
 
 data class Tarefa(
     val id: Long? = null,
