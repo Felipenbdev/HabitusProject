@@ -8,6 +8,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.habitus.entities.Usuario
+import com.example.habitus.network.RetrofitInstance
+import retrofit2.Call
+import retrofit2.Response
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,12 +25,27 @@ class MainActivity : AppCompatActivity() {
         val buttonCreateUser = findViewById<Button>(R.id.CreateUser)
         val userText = findViewById<EditText>(R.id.InputUser)
         val passwordText = findViewById<EditText>(R.id.InputPassword)
-        buttonCreateUser.setOnClickListener { createUser(userText, passwordText) }
+        buttonCreateUser.setOnClickListener { adicionarUsuario(userText, passwordText) }
     }
 
-    fun createUser(userText: EditText, passwordText: EditText) {
-        val usuario = Usuario(1, userText.text.toString(), passwordText.text.toString())
-        println(usuario)
+    private fun adicionarUsuario(username: EditText, senha: EditText) {
+        val novoUsuario = Usuario(username = username.text.toString(), senha = senha.text.toString())
+
+        val call = RetrofitInstance.api.criarUsuario(novoUsuario)
+
+        call.enqueue(object : retrofit2.Callback<Usuario> {
+            override fun onResponse(call: retrofit2.Call<Usuario>, response: retrofit2.Response<Usuario>) {
+                if (response.isSuccessful) {
+                    val usuarioCriado = response.body()
+                    println("Usuário criado com sucesso: $usuarioCriado")
+                } else {
+                    println("Erro ao criar usuário: ${response.code()}")
+                }
+            }
+            override fun onFailure(call: retrofit2.Call<Usuario>, t: Throwable) {
+                println("Falha na requisição: ${t.message}")
+            }
+        })
     }
 
 }
