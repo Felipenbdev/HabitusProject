@@ -1,18 +1,20 @@
 package com.example.habitus
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.habitus.entities.Tarefa
 import com.example.habitus.entities.Usuario
 import com.example.habitus.network.RetrofitInstance
-import retrofit2.Call
-import retrofit2.Response
 
 class MainActivity : AppCompatActivity() {
+    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -28,7 +30,8 @@ class MainActivity : AppCompatActivity() {
         val passwordText = findViewById<EditText>(R.id.InputPassword)
         val IdInput = findViewById<EditText>(R.id.InputId)
         buttonCreateUser.setOnClickListener { adicionarUsuario(userText, passwordText) }
-        buttonShowById.setOnClickListener { showById(IdInput.text.toString().toLongOrNull()) }
+        buttonShowById.setOnClickListener { showById(IdInput.text.toString().toLong())}
+        val view = findViewById<TextView>(R.id.idtarefas)
     }
 
     private fun adicionarUsuario(username: EditText, senha: EditText) {
@@ -51,8 +54,37 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
-    fun showById(id: Long?) {
-        println(id)
+    fun showById(id: Long) {
+        val call = RetrofitInstance.api.listarTarefasDoUsuario(id)
+        call.enqueue(object : retrofit2.Callback<List<Tarefa>> {
+            override fun onResponse(
+                call: retrofit2.Call<List<Tarefa>>,
+                response: retrofit2.Response<List<Tarefa>>
+            ) {
+                if (response.isSuccessful) {
+                    val tarefas = response.body()
+                    if (tarefas != null) {
+                        val builder = StringBuilder()
+                        builder.append("Tarefas do usuário $id:\n")
+                        for (tarefa in tarefas) {
+                            builder.append("- ${tarefa.id}: ${tarefa.descricao}\n")
+                        }
+                        val view = findViewById<TextView>(R.id.idtarefas)
+                        view.text = builder.toString()
+                    } else {
+                        println("Nenhuma tarefa encontrada para o usuário $id.")
+                    }
+                } else {
+                    val view = findViewById<TextView>(R.id.idtarefas)
+                    view.text = "Erro na resposta: ${response.code()}"
+                }
+            }
+
+            override fun onFailure(call: retrofit2.Call<List<Tarefa>>, t: Throwable) {
+                val view = findViewById<TextView>(R.id.idtarefas)
+                view.text = "Falha na requisição: ${t.message}"
+            }
+        })
     }
 
 }
