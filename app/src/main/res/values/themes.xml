@@ -3,6 +3,10 @@
     <style name="Base.Theme.Habitus" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="android:windowBackground">@color/fundo</item>
+        <item name="colorPrimary">@color/primaryColor</item>
+        <item name="colorPrimaryVariant">@color/primaryColorVar</item>
+        <item name="colorSecondary">@color/secundaryColor</item>
     </style>
 
     <style name="Theme.Habitus" parent="Base.Theme.Habitus" />

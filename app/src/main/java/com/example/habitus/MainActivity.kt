@@ -26,11 +26,22 @@ class MainActivity : AppCompatActivity() {
         }
         val buttonCreateUser = findViewById<Button>(R.id.CreateUser)
         val buttonShowById = findViewById<Button>(R.id.ShowById)
+        val buttonAddTarefa = findViewById<Button>(R.id.buttonAddTarefa)
+
         val userText = findViewById<EditText>(R.id.InputUser)
         val passwordText = findViewById<EditText>(R.id.InputPassword)
+
         val IdInput = findViewById<EditText>(R.id.InputId)
+
+        val IdInputadd = findViewById<EditText>(R.id.IdAdd)
+        val descricaoText = findViewById<EditText>(R.id.Descricao)
+        val data = findViewById<EditText>(R.id.Data)
+
         buttonCreateUser.setOnClickListener { adicionarUsuario(userText, passwordText) }
-        buttonShowById.setOnClickListener { showById(IdInput.text.toString().toLong())}
+        buttonShowById.setOnClickListener { showById(IdInput.text.toString().toLong()) }
+        buttonAddTarefa.setOnClickListener { addTarefa(IdInputadd.text.toString().toLong(),
+            descricaoText.text.toString(),
+            data.text.toString()) }
         val view = findViewById<TextView>(R.id.idtarefas)
     }
 
@@ -85,6 +96,9 @@ class MainActivity : AppCompatActivity() {
                 view.text = "Falha na requisição: ${t.message}"
             }
         })
+    }
+
+    fun addTarefa(id: Long, descricao: String, data: String) {
     }
 
 }
