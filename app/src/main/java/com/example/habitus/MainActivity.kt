@@ -1,10 +1,12 @@
 package com.example.habitus
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -12,6 +14,8 @@ import androidx.core.view.WindowInsetsCompat
 import com.example.habitus.entities.Tarefa
 import com.example.habitus.entities.Usuario
 import com.example.habitus.network.RetrofitInstance
+import retrofit2.Call
+import retrofit2.Response
 
 class MainActivity : AppCompatActivity() {
     @SuppressLint("MissingInflatedId")
@@ -37,15 +41,15 @@ class MainActivity : AppCompatActivity() {
         val descricaoText = findViewById<EditText>(R.id.Descricao)
         val data = findViewById<EditText>(R.id.Data)
 
-        buttonCreateUser.setOnClickListener { adicionarUsuario(userText, passwordText) }
+        buttonCreateUser.setOnClickListener { adicionarUsuario(userText, passwordText, this) }
         buttonShowById.setOnClickListener { showById(IdInput.text.toString().toLong()) }
         buttonAddTarefa.setOnClickListener { addTarefa(IdInputadd.text.toString().toLong(),
             descricaoText.text.toString(),
-            data.text.toString()) }
+            data.text.toString(), this) }
         val view = findViewById<TextView>(R.id.idtarefas)
     }
 
-    private fun adicionarUsuario(username: EditText, senha: EditText) {
+    private fun adicionarUsuario(username: EditText, senha: EditText, context : Context) {
         val novoUsuario = Usuario(username = username.text.toString(), senha = senha.text.toString())
 
         val call = RetrofitInstance.api.criarUsuario(novoUsuario)
@@ -55,6 +59,7 @@ class MainActivity : AppCompatActivity() {
                 if (response.isSuccessful) {
                     val usuarioCriado = response.body()
                     println("Usuário criado com sucesso: $usuarioCriado")
+                    Toast.makeText(context, "Usuário criado com sucesso!", Toast.LENGTH_SHORT).show()
                 } else {
                     println("Erro ao criar usuário: ${response.code()}")
                 }
@@ -98,7 +103,31 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
-    fun addTarefa(id: Long, descricao: String, data: String) {
+    fun addTarefa(id: Long, descricao: String, data: String, context : Context) {
+        val usuario = Usuario(id = id, username = "", senha = "")
+        val tarefa = Tarefa(
+            descricao = descricao,
+            datahora = data,
+            ativo = true,
+            usuario = usuario
+        )
+        val call = RetrofitInstance.api.criarTarefa(tarefa)
+
+        call.enqueue(object : retrofit2.Callback<Tarefa>{
+            override fun onResponse(call: Call<Tarefa?>, response: Response<Tarefa?>) {
+                if(response.isSuccessful){
+                    val tarefaCriada = response.body()
+                    println("Tarefa criada com sucesso: ${tarefaCriada?.descricao}")
+                    Toast.makeText(context, "Tarefa criado com sucesso!", Toast.LENGTH_SHORT).show()
+                }else{
+                    println("Erro ao criar tarefa: ${response.code()}")
+                }
+            }
+
+            override fun onFailure(call: Call<Tarefa?>, t: Throwable) {
+                println("Falha na requisição: ${t.message}")
+            }
+        })
     }
 
 }
