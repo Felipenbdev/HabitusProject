@@ -23,9 +23,12 @@ class MainActivity : AppCompatActivity() {
             insets
         }
         val buttonCreateUser = findViewById<Button>(R.id.CreateUser)
+        val buttonShowById = findViewById<Button>(R.id.ShowById)
         val userText = findViewById<EditText>(R.id.InputUser)
         val passwordText = findViewById<EditText>(R.id.InputPassword)
+        val IdInput = findViewById<EditText>(R.id.InputId)
         buttonCreateUser.setOnClickListener { adicionarUsuario(userText, passwordText) }
+        buttonShowById.setOnClickListener { showById(IdInput.text.toString().toLongOrNull()) }
     }
 
     private fun adicionarUsuario(username: EditText, senha: EditText) {
@@ -46,6 +49,10 @@ class MainActivity : AppCompatActivity() {
                 println("Falha na requisição: ${t.message}")
             }
         })
+    }
+
+    fun showById(id: Long?) {
+        println(id)
     }
 
 }

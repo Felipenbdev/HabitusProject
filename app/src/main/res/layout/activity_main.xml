@@ -43,7 +43,43 @@
             android:id="@+id/InputPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="hint" />
+            android:hint="Password" />
     </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/ShowById"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="90dp"
+        android:layout_marginTop="24dp"
+        android:text="ShowById"
+        app:layout_constraintEnd_toEndOf="@+id/CreateUser"
+        app:layout_constraintStart_toStartOf="@+id/CreateUser"
+        app:layout_constraintTop_toBottomOf="@+id/CreateUser" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout6"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/ShowById"
+        app:layout_constraintEnd_toStartOf="@+id/ShowById"
+        app:layout_constraintTop_toTopOf="@+id/ShowById">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/InputId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="id" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="tarefas"
+        app:layout_constraintEnd_toEndOf="@+id/ShowById"
+        app:layout_constraintStart_toStartOf="@+id/textInputLayout6"
+        app:layout_constraintTop_toBottomOf="@+id/ShowById" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
