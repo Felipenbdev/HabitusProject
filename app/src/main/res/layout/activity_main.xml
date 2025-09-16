@@ -19,7 +19,8 @@
             android:id="@+id/InputUser"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="User" />
+            android:hint="User"
+            android:textColor="#FFFFFF" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
@@ -43,7 +44,8 @@
             android:id="@+id/InputPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Password" />
+            android:hint="Password"
+            android:textColor="#FFFFFF" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
@@ -69,7 +71,9 @@
             android:id="@+id/InputId"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="id" />
+            android:hint="id"
+            android:textColor="#FFFFFF"
+            android:textColorLink="#FFFBFB" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
@@ -78,6 +82,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:text="tarefas"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/ShowById"
         app:layout_constraintStart_toStartOf="@+id/textInputLayout6"
         app:layout_constraintTop_toBottomOf="@+id/ShowById" />
@@ -102,7 +109,8 @@
             android:id="@+id/Data"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Data" />
+            android:hint="Data"
+            android:textColor="#FFFFFF" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -117,7 +125,8 @@
             android:id="@+id/Descricao"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="descrição" />
+            android:hint="descrição"
+            android:textColor="#FFFFFF" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -132,7 +141,8 @@
             android:id="@+id/IdAdd"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Id" />
+            android:hint="Id"
+            android:textColor="#FFFFFF" />
     </com.google.android.material.textfield.TextInputLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
