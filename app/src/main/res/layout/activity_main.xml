@@ -52,7 +52,7 @@
         android:id="@+id/ShowById"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="90dp"
+        android:layout_marginStart="70dp"
         android:layout_marginTop="32dp"
         android:text="ShowById"
         app:layout_constraintEnd_toEndOf="@+id/CreateUser"
@@ -99,27 +99,12 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayout9"
-        android:layout_width="409dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/buttonAddTarefa"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/Data"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Data"
-            android:textColor="#FFFFFF" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout10"
         android:layout_width="409dp"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/textInputLayout9"
-        app:layout_constraintEnd_toEndOf="@+id/textInputLayout9"
-        app:layout_constraintStart_toStartOf="@+id/textInputLayout9">
+        app:layout_constraintBottom_toTopOf="@+id/Selectdata"
+        app:layout_constraintEnd_toEndOf="@+id/Selectdata"
+        app:layout_constraintStart_toStartOf="@+id/Selectdata">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/Descricao"
@@ -144,5 +129,14 @@
             android:hint="Id"
             android:textColor="#FFFFFF" />
     </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/Selectdata"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Selecione a data"
+        app:layout_constraintBottom_toTopOf="@+id/buttonAddTarefa"
+        app:layout_constraintEnd_toEndOf="@+id/buttonAddTarefa"
+        app:layout_constraintStart_toStartOf="@+id/buttonAddTarefa" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

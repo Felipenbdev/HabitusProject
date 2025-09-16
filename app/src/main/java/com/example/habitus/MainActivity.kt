@@ -1,7 +1,10 @@
 package com.example.habitus
 
 import android.annotation.SuppressLint
+import android.app.DatePickerDialog
+import android.app.TimePickerDialog
 import android.content.Context
+import android.icu.util.Calendar
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
@@ -39,13 +42,16 @@ class MainActivity : AppCompatActivity() {
 
         val IdInputadd = findViewById<EditText>(R.id.IdAdd)
         val descricaoText = findViewById<EditText>(R.id.Descricao)
-        val data = findViewById<EditText>(R.id.Data)
+        val buttonData = findViewById<Button>(R.id.Selectdata)
+        val calendario = Calendar.getInstance()
+
+        buttonData.setOnClickListener { showData(calendario) }
 
         buttonCreateUser.setOnClickListener { adicionarUsuario(userText, passwordText, this) }
         buttonShowById.setOnClickListener { showById(IdInput.text.toString().toLong()) }
-        buttonAddTarefa.setOnClickListener { addTarefa(IdInputadd.text.toString().toLong(),
-            descricaoText.text.toString(),
-            data.text.toString(), this) }
+        // buttonAddTarefa.setOnClickListener { addTarefa(IdInputadd.text.toString().toLong(),
+        //    descricaoText.text.toString(),
+        //    data.text.toString(), this) }
         val view = findViewById<TextView>(R.id.idtarefas)
     }
 
@@ -130,4 +136,27 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
+    fun showData(calendario: Calendar) {
+        val ano = calendario.get(Calendar.YEAR)
+        val mes = calendario.get(Calendar.MONTH)
+        val dia = calendario.get(Calendar.DAY_OF_MONTH)
+
+        DatePickerDialog(this, { _, anoEscolhido, mesEscolhido, diaEscolhido ->
+            val textData =
+                "Data escolhida: $diaEscolhido/${mesEscolhido + 1}/$anoEscolhido"
+            println(textData)
+            showHora(calendario)
+        }, ano, mes, dia).show()
+    }
+
+    fun showHora(calendario: Calendar) {
+        val hora = calendario.get(Calendar.HOUR_OF_DAY)
+        val minuto = calendario.get(Calendar.MINUTE)
+
+        TimePickerDialog(this, { _, horaEscolhida, minutoEscolhido ->
+            val textHora =
+                "Hora escolhida: %02d:%02d".format(horaEscolhida, minutoEscolhido)
+            println(textHora)
+        }, hora, minuto, true).show()
+    }
 }
