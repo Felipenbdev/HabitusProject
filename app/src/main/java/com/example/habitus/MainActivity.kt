@@ -21,6 +21,7 @@ import retrofit2.Call
 import retrofit2.Response
 
 class MainActivity : AppCompatActivity() {
+    var dataHora = ""
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,9 +50,9 @@ class MainActivity : AppCompatActivity() {
 
         buttonCreateUser.setOnClickListener { adicionarUsuario(userText, passwordText, this) }
         buttonShowById.setOnClickListener { showById(IdInput.text.toString().toLong()) }
-        // buttonAddTarefa.setOnClickListener { addTarefa(IdInputadd.text.toString().toLong(),
-        //    descricaoText.text.toString(),
-        //    data.text.toString(), this) }
+        buttonAddTarefa.setOnClickListener { addTarefa(IdInputadd.text.toString().toLong(),
+           descricaoText.text.toString(),
+           dataHora, this) }
         val view = findViewById<TextView>(R.id.idtarefas)
     }
 
@@ -142,9 +143,8 @@ class MainActivity : AppCompatActivity() {
         val dia = calendario.get(Calendar.DAY_OF_MONTH)
 
         DatePickerDialog(this, { _, anoEscolhido, mesEscolhido, diaEscolhido ->
-            val textData =
-                "Data escolhida: $diaEscolhido/${mesEscolhido + 1}/$anoEscolhido"
-            println(textData)
+            val dataText = "%04d-%02d-%02d".format(anoEscolhido, mesEscolhido, diaEscolhido)
+            dataHora = dataText
             showHora(calendario)
         }, ano, mes, dia).show()
     }
@@ -154,9 +154,10 @@ class MainActivity : AppCompatActivity() {
         val minuto = calendario.get(Calendar.MINUTE)
 
         TimePickerDialog(this, { _, horaEscolhida, minutoEscolhido ->
-            val textHora =
-                "Hora escolhida: %02d:%02d".format(horaEscolhida, minutoEscolhido)
-            println(textHora)
+            dataHora += "T"
+            dataHora += "%02d:%02d".format(horaEscolhida, minutoEscolhido)
+            dataHora += ":00"
+            println(dataHora)
         }, hora, minuto, true).show()
     }
 }
