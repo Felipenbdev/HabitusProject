@@ -22,6 +22,7 @@ import com.example.habitus.network.RetrofitInstance
 import retrofit2.Call
 import retrofit2.Response
 
+
 class MainActivity : AppCompatActivity() {
     var dataHora = ""
     @SuppressLint("MissingInflatedId")
@@ -50,105 +51,12 @@ class MainActivity : AppCompatActivity() {
 
         buttonData.setOnClickListener { showData(calendario) }
 
-        buttonCreateUser.setOnClickListener { adicionarUsuario(userText, passwordText, this) }
-        buttonShowById.setOnClickListener { showById(IdInput.text.toString().toLong()) }
-        buttonAddTarefa.setOnClickListener { addTarefa(IdInputadd.text.toString().toLong(),
-           descricaoText.text.toString(),
-           dataHora, this) }
+
         val view = findViewById<TextView>(R.id.idtarefas)
     }
 
-    private fun adicionarUsuario(username: EditText, senha: EditText, context : Context) {
-        val novoUsuario = Usuario(username = username.text.toString(), senha = senha.text.toString())
-        val progressBar = findViewById<ProgressBar>(R.id.progressBar)
-        progressBar.visibility = View.VISIBLE
 
-        val call = RetrofitInstance.api.criarUsuario(novoUsuario)
 
-        call.enqueue(object : retrofit2.Callback<Usuario> {
-            override fun onResponse(call: retrofit2.Call<Usuario>, response: retrofit2.Response<Usuario>) {
-                progressBar.visibility = View.GONE
-                if (response.isSuccessful) {
-                    val usuarioCriado = response.body()
-                    println("Usuário criado com sucesso: $usuarioCriado")
-                    Toast.makeText(context, "Usuário criado com sucesso!", Toast.LENGTH_SHORT).show()
-                } else {
-                    println("Erro ao criar usuário: ${response.code()}")
-                }
-            }
-            override fun onFailure(call: retrofit2.Call<Usuario>, t: Throwable) {
-                progressBar.visibility = View.GONE
-                Toast.makeText(context, "erro de conexão", Toast.LENGTH_SHORT).show()
-                println("Falha na requisição: ${t.message}")
-            }
-        })
-    }
-
-    fun showById(id: Long) {
-        val progressBar = findViewById<ProgressBar>(R.id.progressBar)
-        progressBar.visibility = View.VISIBLE
-        val call = RetrofitInstance.api.listarTarefasDoUsuario(id)
-        call.enqueue(object : retrofit2.Callback<List<Tarefa>> {
-            override fun onResponse(call: retrofit2.Call<List<Tarefa>>, response: retrofit2.Response<List<Tarefa>>) {
-                progressBar.visibility = View.GONE
-                if (response.isSuccessful) {
-                    val tarefas = response.body()
-                    if (tarefas != null) {
-                        val builder = StringBuilder()
-                        builder.append("Tarefas do usuário $id:\n")
-                        for (tarefa in tarefas) {
-                            builder.append("- ${tarefa.id}: ${tarefa.descricao}\n")
-                        }
-                        val view = findViewById<TextView>(R.id.idtarefas)
-                        view.text = builder.toString()
-                    } else {
-                        println("Nenhuma tarefa encontrada para o usuário $id.")
-                    }
-                } else {
-                    val view = findViewById<TextView>(R.id.idtarefas)
-                    view.text = "Erro na resposta: ${response.code()}"
-                }
-            }
-
-            override fun onFailure(call: retrofit2.Call<List<Tarefa>>, t: Throwable) {
-                progressBar.visibility = View.GONE
-                val view = findViewById<TextView>(R.id.idtarefas)
-                view.text = "Falha na requisição: ${t.message}"
-            }
-        })
-    }
-
-    fun addTarefa(id: Long, descricao: String, data: String, context : Context) {
-        val usuario = Usuario(id = id, username = "", senha = "")
-        val tarefa = Tarefa(
-            descricao = descricao,
-            datahora = data,
-            ativo = true,
-            usuario = usuario
-        )
-        val progressBar = findViewById<ProgressBar>(R.id.progressBar)
-        progressBar.visibility = View.VISIBLE
-        val call = RetrofitInstance.api.criarTarefa(tarefa)
-
-        call.enqueue(object : retrofit2.Callback<Tarefa>{
-            override fun onResponse(call: Call<Tarefa?>, response: Response<Tarefa?>) {
-                progressBar.visibility = View.GONE
-                if(response.isSuccessful){
-                    val tarefaCriada = response.body()
-                    println("Tarefa criada com sucesso: ${tarefaCriada?.descricao}")
-                    Toast.makeText(context, "Tarefa criado com sucesso!", Toast.LENGTH_SHORT).show()
-                }else{
-                    println("Erro ao criar tarefa: ${response.code()}")
-                }
-            }
-
-            override fun onFailure(call: Call<Tarefa?>, t: Throwable) {
-                progressBar.visibility = View.GONE
-                Toast.makeText(context, "erro de conexão ao criar nova tarefa", Toast.LENGTH_SHORT).show()
-                println("Falha na requisição: ${t.message}")
-            }
-        })
-    }
 
     fun showData(calendario: Calendar) {
         val ano = calendario.get(Calendar.YEAR)
