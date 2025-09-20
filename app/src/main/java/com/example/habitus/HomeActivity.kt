@@ -37,8 +37,6 @@ class HomeActivity : AppCompatActivity() {
         buttonData.setOnClickListener { showData(calendario) }
         buttonShowTasks.setOnClickListener { showTasks() }
         buttonAddTask.setOnClickListener { addTask(descricaoText.text.toString(), dataHora) }
-
-        val view = findViewById<RecyclerView>(R.id.idTasks)
     }
 
     fun addTask(desc: String, dataHora: String) {
