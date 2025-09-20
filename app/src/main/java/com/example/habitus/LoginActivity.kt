@@ -31,7 +31,7 @@ class LoginActivity : AppCompatActivity() {
 
         loginBtn.setOnClickListener {
             loginUser(usernameText.text.toString(), passwordText.text.toString(), this) { usuarioLogado ->
-                val intentHome = Intent(this, MainActivity::class.java)
+                val intentHome = Intent(this, HomeActivity::class.java)
                 startActivity(intentHome)
                 finish()
             }

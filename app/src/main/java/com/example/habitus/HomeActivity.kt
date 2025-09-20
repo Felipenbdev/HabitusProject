@@ -1,62 +1,53 @@
 package com.example.habitus
 
-import android.widget.ProgressBar
-import android.view.View
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
-import android.content.Context
 import android.icu.util.Calendar
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
-import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.example.habitus.entities.Tarefa
-import com.example.habitus.entities.Usuario
-import com.example.habitus.network.RetrofitInstance
-import retrofit2.Call
-import retrofit2.Response
+import androidx.recyclerview.widget.RecyclerView
 
 
-class MainActivity : AppCompatActivity() {
+class HomeActivity : AppCompatActivity() {
     var dataHora = ""
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_home)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        val buttonCreateUser = findViewById<Button>(R.id.CreateUser)
-        val buttonShowById = findViewById<Button>(R.id.ShowById)
-        val buttonAddTarefa = findViewById<Button>(R.id.buttonAddTarefa)
+        val buttonShowTasks = findViewById<Button>(R.id.showTasks)
+        val buttonAddTask = findViewById<Button>(R.id.buttonAddTarefa)
 
-        val userText = findViewById<EditText>(R.id.InputUser)
-        val passwordText = findViewById<EditText>(R.id.InputPassword)
-
-        val IdInput = findViewById<EditText>(R.id.InputId)
-
-        val IdInputadd = findViewById<EditText>(R.id.IdAdd)
         val descricaoText = findViewById<EditText>(R.id.Descricao)
         val buttonData = findViewById<Button>(R.id.Selectdata)
         val calendario = Calendar.getInstance()
 
         buttonData.setOnClickListener { showData(calendario) }
+        buttonShowTasks.setOnClickListener { showTasks() }
+        buttonAddTask.setOnClickListener { addTask(descricaoText.text.toString(), dataHora) }
 
-
-        val view = findViewById<TextView>(R.id.idtarefas)
+        val view = findViewById<RecyclerView>(R.id.idTasks)
     }
 
+    fun addTask(desc: String, dataHora: String) {
 
+    }
 
+    fun showTasks() {
+
+    }
 
     fun showData(calendario: Calendar) {
         val ano = calendario.get(Calendar.YEAR)
