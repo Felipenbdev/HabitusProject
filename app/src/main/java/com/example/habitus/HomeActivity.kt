@@ -8,11 +8,14 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.example.habitus.entities.Tarefa
+import com.example.habitus.network.RetrofitInstance
 
 
 class HomeActivity : AppCompatActivity() {
@@ -40,7 +43,24 @@ class HomeActivity : AppCompatActivity() {
     }
 
     fun addTask(desc: String, dataHora: String) {
+        if (desc.isEmpty() || dataHora.isEmpty()) return
 
+        val novaTarefa = Tarefa(descricao = desc, datahora = dataHora, ativo = true)
+
+        RetrofitInstance.api.criarTarefa(novaTarefa).enqueue(object : retrofit2.Callback<Tarefa> {
+            override fun onResponse(call: retrofit2.Call<Tarefa>, response: retrofit2.Response<Tarefa>) {
+                if (response.isSuccessful) {
+                    println("Tarefa criada com sucesso: ${response.body()}")
+                } else {
+                    println("Erro ao criar tarefa: ${response.code()} - ${response.errorBody()?.string()}")
+                }
+            }
+
+            override fun onFailure(call: retrofit2.Call<Tarefa>, t: Throwable) {
+                println("Falha de conexão: ${t.message}")
+                t.printStackTrace()
+            }
+        })
     }
 
     fun showTasks() {
