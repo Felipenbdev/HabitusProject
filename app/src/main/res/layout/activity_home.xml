@@ -5,51 +5,78 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="16dp"
     tools:context=".HomeActivity">
+
+    <TextView
+        android:id="@+id/labelNovaTarefa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Adicionar Nova Tarefa"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/Descricao"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:hint="Descrição da tarefa..."
+        android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/labelNovaTarefa" />
+
+    <Button
+        android:id="@+id/Selectdata"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Selecionar Data e Hora"
+        app:layout_constraintEnd_toStartOf="@id/buttonAddTarefa"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/Descricao"
+        android:layout_marginEnd="8dp"/>
 
     <Button
         android:id="@+id/buttonAddTarefa"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="add Tarefa"
-        app:layout_constraintEnd_toEndOf="@+id/Selectdata"
-        app:layout_constraintStart_toStartOf="@+id/Selectdata"
-        app:layout_constraintTop_toBottomOf="@+id/Selectdata" />
+        android:text="Adicionar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/Selectdata"
+        app:layout_constraintBottom_toBottomOf="@id/Selectdata"/>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayout10"
-        android:layout_width="409dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/showTasks"
-        tools:layout_editor_absoluteX="2dp">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/Descricao"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="descrição"
-            android:textColor="#FFFFFF" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <Button
-        android:id="@+id/Selectdata"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="Selecione a data"
-        app:layout_constraintEnd_toEndOf="@+id/textInputLayout10"
-        app:layout_constraintStart_toStartOf="@+id/textInputLayout10"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout10" />
+    <View
+        android:id="@+id/divider"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="24dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/Selectdata" />
 
     <Button
         android:id="@+id/showTasks"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="Button"
+        android:text="Atualizar Lista"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/divider" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewTasks"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/showTasks"
+        tools:listitem="@layout/task_item" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
