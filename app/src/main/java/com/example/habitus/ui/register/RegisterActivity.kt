@@ -1,4 +1,4 @@
-package com.example.habitus
+package com.example.habitus.ui.register
 
 import android.content.Context
 import android.content.Intent
@@ -10,8 +10,13 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.example.habitus.entities.Usuario
+import com.example.habitus.R
+import com.example.habitus.model.Usuario
 import com.example.habitus.network.RetrofitInstance
+import com.example.habitus.ui.login.LoginActivity
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class RegisterActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,7 +32,7 @@ class RegisterActivity : AppCompatActivity() {
         val usernameText = findViewById<EditText>(R.id.usernameRegisA)
         val passwordText = findViewById<EditText>(R.id.passwordRegistA)
         registerbtn.setOnClickListener { adicionarUsuario(usernameText.text.toString(), passwordText.text.toString(), this) }
-        
+
         val loginBtn = findViewById<Button>(R.id.loginRegisA)
         loginBtn.setOnClickListener {
             val intentLogin = Intent(this, LoginActivity::class.java)
@@ -40,8 +45,8 @@ class RegisterActivity : AppCompatActivity() {
 
         val call = RetrofitInstance.api.criarUsuario(novoUsuario)
 
-        call.enqueue(object : retrofit2.Callback<Usuario> {
-            override fun onResponse(call: retrofit2.Call<Usuario>, response: retrofit2.Response<Usuario>) {
+        call.enqueue(object : Callback<Usuario> {
+            override fun onResponse(call: Call<Usuario>, response: Response<Usuario>) {
                 if (response.isSuccessful) {
                     val usuarioCriado = response.body()
                     Toast.makeText(context, "Usuário criado: ${usuarioCriado?.username}", Toast.LENGTH_SHORT).show()
@@ -49,7 +54,7 @@ class RegisterActivity : AppCompatActivity() {
                     Toast.makeText(context, "Erro ao criar usuário: ${response.code()}", Toast.LENGTH_SHORT).show()
                 }
             }
-            override fun onFailure(call: retrofit2.Call<Usuario>, t: Throwable) {
+            override fun onFailure(call: Call<Usuario>, t: Throwable) {
                 Toast.makeText(context, "Falha de conexão: ${t.message}", Toast.LENGTH_SHORT).show()
             }
         })

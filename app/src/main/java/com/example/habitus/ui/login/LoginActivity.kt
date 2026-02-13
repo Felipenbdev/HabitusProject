@@ -1,4 +1,4 @@
-package com.example.habitus
+package com.example.habitus.ui.login
 
 import android.content.Context
 import android.content.Intent
@@ -10,9 +10,13 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.example.habitus.entities.Usuario
+import com.example.habitus.R
+import com.example.habitus.ui.register.RegisterActivity
+import com.example.habitus.model.Usuario
 import com.example.habitus.network.RetrofitInstance
+import com.example.habitus.ui.home.HomeActivity
 import retrofit2.Call
+import retrofit2.Callback
 import retrofit2.Response
 
 class LoginActivity : AppCompatActivity() {
@@ -46,7 +50,7 @@ class LoginActivity : AppCompatActivity() {
     fun loginUser(username: String, senha: String, context: Context, onSuccess: (Usuario) -> Unit) {
         val call = RetrofitInstance.api.login(username, senha)
 
-        call.enqueue(object : retrofit2.Callback<Usuario> {
+        call.enqueue(object : Callback<Usuario> {
             override fun onResponse(call: Call<Usuario>, response: Response<Usuario>) {
                 if (response.isSuccessful) {
                     val usuarioLogado = response.body()
