@@ -44,9 +44,9 @@ class HomeViewModel : ViewModel() {
             return
         }
 
-        val nova = Tarefa(descricao = descricao, datahora = dataHora, ativo = true)
+        val novaTarefa = Tarefa(descricao = descricao, datahora = dataHora, ativo = false)
 
-        repository.criarTarefa(nova) { _, erroMsg ->
+        repository.criarTarefa(novaTarefa) { _, erroMsg ->
             if (erroMsg != null) {
                 _erro.postValue(erroMsg)
             } else {

@@ -42,6 +42,8 @@ class HomeActivity : AppCompatActivity() {
         val buttonAddTask = findViewById<Button>(R.id.buttonAddTarefa)
         val descricaoText = findViewById<EditText>(R.id.Descricao)
         val buttonData = findViewById<Button>(R.id.Selectdata)
+
+
         val calendario = Calendar.getInstance()
 
         // Configuração da RecyclerView
