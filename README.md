@@ -11,11 +11,13 @@ O objetivo do projeto é permitir que usuários criem uma conta, façam login e 
 
 # 🧱 Arquitetura
 
-Frontend (Android - Java/Kotlin)  
+Android (Frontend)  
 ⬇  
-Backend (API REST - Java/Spring Boot)  
+API REST (Spring Boot - Docker)  
 ⬇  
-Banco de Dados
+PostgreSQL (Docker)  
+⬇  
+pgAdmin (Docker)
 
 ---
 
@@ -33,19 +35,71 @@ Banco de Dados
 
 ---
 
-# 🔧 Como executar o Backend (API)
+# 🐳 Executando o Backend com Docker
 
 ## 1️⃣ Pré-requisitos
 
-- Java 21+
-- IDE (IntelliJ ou VSCode recomendados)
+- Docker Desktop instalado
+- Docker Compose habilitado
 
-## 2️⃣ Clonar o repositório
+---
+
+## 2️⃣ Clonar o Backend
 
 ```bash
-
 git clone https://github.com/Felipenbdev/ApiHabitusProject.git
 ```
+
+---
+
+## 3️⃣ Subir os Containers
+
+```bash
+docker compose up --build
+```
+
+## Isso irá iniciar:
+
+- 🐘 PostgreSQL → Porta 5432
+
+- 🌐 pgAdmin → http://localhost:5050
+
+- 🚀 Backend → http://localhost:8080
+
+## 🖥️ Como Usar o pgAdmin
+
+Acesse → http://localhost:5050
+
+### Login do pgAdmin:
+
+- Email: admin@habitus.com
+
+- Senha: admin
+
+### 🔗 Conectar ao Banco pelo pgAdmin
+
+### 1. Clique em Add New Server
+
+### 2. Aba General
+- Name: Habitus
+
+### 3. Aba Connection
+
+- Host name/address: db
+
+- Port: 5432
+
+- Username: postgres
+
+- Password: postgres
+
+### 4. Clique em Save
+
+Agora você poderá visualizar:
+
+- Banco habitus
+
+- Tabelas criadas automaticamente pelo Hibernate
 
 # 📱 Como executar o App Android
 
