@@ -29,7 +29,7 @@ class HomeViewModel : ViewModel() {
     fun toggleTarefa(tarefa: Tarefa) {
         val id = tarefa.id ?: return
 
-        repository.toggleTarefa(id) { tarefaAtualizada, erroMsg ->
+        repository.toggleTarefa(id) { _, erroMsg ->
             if (erroMsg != null) {
                 _erro.postValue(erroMsg)
             } else {
