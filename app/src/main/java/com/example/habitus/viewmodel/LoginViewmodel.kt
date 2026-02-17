@@ -13,7 +13,7 @@ class LoginViewmodel : ViewModel() {
     private val _erro = MutableLiveData<String>()
     val erro: LiveData<String> = _erro
 
-    fun login(username: String, senha: String, onSuccess: () -> Unit){
+    fun login(username: String, senha: String, onSuccess: (String) -> Unit){
         if (username.isEmpty() || senha.isEmpty()) {
             _erro.postValue("Username e senha são obrigatórios.")
             return
@@ -23,7 +23,7 @@ class LoginViewmodel : ViewModel() {
             if (erroMsg != null) {
                 _erro.postValue(erroMsg)
             } else {
-                onSuccess()
+                onSuccess("Logado com Sucesso")
             }
         }
     }

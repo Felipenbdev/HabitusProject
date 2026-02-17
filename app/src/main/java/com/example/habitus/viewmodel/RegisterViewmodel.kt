@@ -13,7 +13,7 @@ class RegisterViewmodel : ViewModel() {
     private val _erro = MutableLiveData<String>()
     val erro: LiveData<String> = _erro
 
-    fun criarUsuario(username: String, senha: String){
+    fun criarUsuario(username: String, senha: String, onSuccess: (String) -> Unit){
         if (username.isEmpty() || senha.isEmpty()) {
             _erro.postValue("Username e senha são obrigatórios.")
             return
@@ -22,6 +22,8 @@ class RegisterViewmodel : ViewModel() {
         repository.criarUsuario(novoUsuario) { _, erroMsg ->
             if (erroMsg != null) {
                 _erro.postValue(erroMsg)
+            } else {
+                onSuccess("Registrado com Sucesso")
             }
         }
     }

@@ -48,7 +48,12 @@ class RegisterActivity : AppCompatActivity() {
 
         // Listeners
         registerbtn.setOnClickListener {
-            viewModel.criarUsuario(usernameText.text.toString(), passwordText.text.toString())
+            viewModel.criarUsuario(usernameText.text.toString(), passwordText.text.toString()) { mensagem ->
+                Toast.makeText(this, mensagem, Toast.LENGTH_SHORT).show()
+                // Limpa os campos após adicionar
+                usernameText.text.clear()
+                passwordText.text.clear()
+            }
         }
 
         loginBtn.setOnClickListener {

@@ -49,7 +49,8 @@ class LoginActivity : AppCompatActivity() {
 
         // Listeners
         loginBtn.setOnClickListener {
-            viewModel.login(usernameText.text.toString(), passwordText.text.toString()) { ->
+            viewModel.login(usernameText.text.toString(), passwordText.text.toString()) { mensagem ->
+                Toast.makeText(this, mensagem, Toast.LENGTH_SHORT).show()
                 val intentHome = Intent(this, HomeActivity::class.java)
                 startActivity(intentHome)
                 finish()
@@ -60,32 +61,4 @@ class LoginActivity : AppCompatActivity() {
             startActivity(intentRegister)
         }
     }
-
-//    fun loginUser(username: String, senha: String, context: Context, onSuccess: (Usuario) -> Unit) {
-//        val call = RetrofitInstance.api.login(username, senha)
-//
-//        call.enqueue(object : Callback<Usuario> {
-//            override fun onResponse(call: Call<Usuario>, response: Response<Usuario>) {
-//                if (response.isSuccessful) {
-//                    val usuarioLogado = response.body()
-//                    if (usuarioLogado != null) {
-//                        Toast.makeText(
-//                            context,
-//                            "Login bem-sucedido: ${usuarioLogado.username}",
-//                            Toast.LENGTH_SHORT
-//                        ).show()
-//                        onSuccess(usuarioLogado)
-//                    }
-//                } else {
-//                    Toast.makeText(context, "Login falhou: ${response.code()}", Toast.LENGTH_SHORT)
-//                        .show()
-//                }
-//            }
-//
-//            override fun onFailure(call: Call<Usuario>, t: Throwable) {
-//                Toast.makeText(context, "Erro de conexão: ${t.message}", Toast.LENGTH_SHORT).show()
-//                t.printStackTrace()
-//            }
-//        })
-//    }
 }
