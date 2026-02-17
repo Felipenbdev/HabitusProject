@@ -1,7 +1,7 @@
 package com.example.habitus.network
 
-import com.example.habitus.entities.Tarefa
-import com.example.habitus.entities.Usuario
+import com.example.habitus.model.Tarefa
+import com.example.habitus.model.Usuario
 import retrofit2.Call
 import retrofit2.http.*
 

@@ -1,4 +1,4 @@
-package com.example.habitus.adapters
+package com.example.habitus.ui.home
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.CheckBox
 import androidx.recyclerview.widget.RecyclerView
 import com.example.habitus.R
-import com.example.habitus.entities.Tarefa
+import com.example.habitus.model.Tarefa
 
 class TaskListAdapter(
     private var tasks: List<Tarefa>,
