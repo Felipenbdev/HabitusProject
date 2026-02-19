@@ -12,9 +12,6 @@ import java.util.concurrent.TimeUnit
 
 object NotificationScheduler {
 
-
-
-
     @RequiresApi(Build.VERSION_CODES.O)
     fun agendar(context: Context, tarefa: Tarefa) {
         val zoneId = java.time.ZoneId.systemDefault()
@@ -33,7 +30,9 @@ object NotificationScheduler {
 
 
         val data = workDataOf(
-            "descricao" to tarefa.descricao
+            "id" to (tarefa.id ?: -1),
+            "descricao" to tarefa.descricao,
+            "datahora" to tarefa.datahora
         )
         val workRequest = OneTimeWorkRequestBuilder<TarefaNotificationWorker>()
             .setInitialDelay(delay, TimeUnit.MILLISECONDS)
