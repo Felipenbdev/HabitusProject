@@ -31,7 +31,8 @@ pgAdmin (Docker)
 - Criar tarefa
 - Listar tarefas do usuário
 - Marcar tarefa como concluída
-- Definir data e horário da tarefa (Será usado posteriormente)
+- Definir data e horário da tarefa
+- Notificar Usuário sobre a tarefa
 
 ---
 
