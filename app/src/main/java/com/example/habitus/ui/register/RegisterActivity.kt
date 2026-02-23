@@ -61,24 +61,4 @@ class RegisterActivity : AppCompatActivity() {
             startActivity(intentLogin)
         }
     }
-
-//    private fun adicionarUsuario(username: String, senha: String, context: Context) {
-//        val novoUsuario = Usuario(username = username, senha = senha)
-//
-//        val call = RetrofitInstance.api.criarUsuario(novoUsuario)
-//
-//        call.enqueue(object : Callback<Usuario> {
-//            override fun onResponse(call: Call<Usuario>, response: Response<Usuario>) {
-//                if (response.isSuccessful) {
-//                    val usuarioCriado = response.body()
-//                    Toast.makeText(context, "Usuário criado: ${usuarioCriado?.username}", Toast.LENGTH_SHORT).show()
-//                } else {
-//                    Toast.makeText(context, "Erro ao criar usuário: ${response.code()}", Toast.LENGTH_SHORT).show()
-//                }
-//            }
-//            override fun onFailure(call: Call<Usuario>, t: Throwable) {
-//                Toast.makeText(context, "Falha de conexão: ${t.message}", Toast.LENGTH_SHORT).show()
-//            }
-//        })
-//    }
 }
