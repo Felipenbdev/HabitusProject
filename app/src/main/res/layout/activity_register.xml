@@ -1,62 +1,127 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.register.RegisterActivity">
+    android:background="#000000"
+    android:padding="24dp">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayout"
-        android:layout_width="409dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="150dp"
+    <ImageView
+        android:id="@+id/imgLogo"
+        android:layout_width="180dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="40dp"
+        android:src="@drawable/ic_logo_habitus"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/usernameRegisA"
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="#121212"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgLogo"
+        app:layout_constraintVertical_bias="0.8">
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Username"
-            android:textColor="#FFFFFFFF" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:orientation="vertical"
+            android:padding="32dp">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayout3"
-        android:layout_width="409dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="@+id/textInputLayout"
-        app:layout_constraintStart_toStartOf="@+id/textInputLayout"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="REGISTRE-SE"
+                android:textColor="#FFFFFF"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="32dp"/>
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/passwordRegistA"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Password"
-            android:textColor="#FFFFFFFF" />
-    </com.google.android.material.textfield.TextInputLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Novo Usuário"
+                android:textColor="#FFFFFF"
+                android:layout_marginBottom="8dp"/>
 
-    <Button
-        android:id="@+id/registerRegisA"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:text="Register"
-        app:layout_constraintEnd_toEndOf="@+id/textInputLayout3"
-        app:layout_constraintStart_toStartOf="@+id/textInputLayout3"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout3" />
+            <EditText
+                android:id="@+id/usernameRegisA"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#EEEEEE"
+                android:paddingLeft="12dp"
+                android:layout_marginBottom="16dp"
+                android:inputType="textPersonName"/>
 
-    <Button
-        android:id="@+id/loginRegisA"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="Login"
-        app:layout_constraintEnd_toEndOf="@+id/registerRegisA"
-        app:layout_constraintStart_toStartOf="@+id/registerRegisA"
-        app:layout_constraintTop_toBottomOf="@+id/registerRegisA" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nova Senha"
+                android:textColor="#FFFFFF"
+                android:layout_marginBottom="8dp"/>
+
+            <EditText
+                android:id="@+id/passwordRegistA"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#EEEEEE"
+                android:paddingLeft="12dp"
+                android:layout_marginBottom="16dp"
+                android:inputType="textPassword"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Confirmar Senha"
+                android:textColor="#FFFFFF"
+                android:layout_marginBottom="8dp"/>
+
+            <EditText
+                android:id="@+id/confirmPasswordRegisA"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#EEEEEE"
+                android:paddingLeft="12dp"
+                android:layout_marginBottom="32dp"
+                android:inputType="textPassword"/>
+
+            <Button
+                android:id="@+id/registerRegisA"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:backgroundTint="#8E24CC"
+                android:text="Criar Conta"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                app:cornerRadius="8dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Já possui uma conta?"
+                android:textColor="#888888"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="24dp"/>
+
+            <TextView
+                android:id="@+id/loginRegisA"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Fazer login"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="8dp"
+                android:padding="8dp"/>
+
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
