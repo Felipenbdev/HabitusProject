@@ -1,5 +1,6 @@
 package com.example.habitus.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -20,6 +21,7 @@ class LoginViewmodel : ViewModel() {
         }
 
         repository.login(username, senha) { _, erroMsg ->
+            Log.e("LOGIN_DEBUG","CLICOU")
             if (erroMsg != null) {
                 _erro.postValue(erroMsg)
             } else {

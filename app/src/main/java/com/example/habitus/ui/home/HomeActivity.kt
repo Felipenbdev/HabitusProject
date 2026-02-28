@@ -59,6 +59,7 @@ class HomeActivity : AppCompatActivity() {
 
         // Configuração dos botões e campos
         val buttonShowTasks = findViewById<Button>(R.id.showTasks)
+        val buttonLogout = findViewById<Button>(R.id.logout)
         val buttonAddTask = findViewById<Button>(R.id.buttonAddTarefa)
         val descricaoText = findViewById<EditText>(R.id.Descricao)
         val buttonData = findViewById<Button>(R.id.Selectdata)
@@ -91,6 +92,10 @@ class HomeActivity : AppCompatActivity() {
 
         buttonShowTasks.setOnClickListener {
             viewModel.carregarTarefas()
+        }
+
+        buttonLogout.setOnClickListener {
+            viewModel.logout()
         }
 
         buttonAddTask.setOnClickListener {

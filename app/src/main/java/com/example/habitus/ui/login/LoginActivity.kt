@@ -3,6 +3,7 @@ package com.example.habitus.ui.login
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -33,6 +34,15 @@ class LoginActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        // Verificar token
+        // TODO Tirar logica da Activity
+        val token = RetrofitInstance.tokenManager.getToken()
+
+        if (token != null) {
+            val intentHome = Intent(this, HomeActivity::class.java)
+            startActivity(intentHome)
+        }
+
         // Viewmodel iniciado
         viewModel = ViewModelProvider(this)[LoginViewmodel::class.java]
 
@@ -49,7 +59,7 @@ class LoginActivity : AppCompatActivity() {
 
         // Listeners
         loginBtn.setOnClickListener {
-            viewModel.login(usernameText.text.toString(), passwordText.text.toString()) { mensagem ->
+            viewModel.login(usernameText.text.toString().trim(), passwordText.text.toString().trim()) { mensagem ->
                 Toast.makeText(this, mensagem, Toast.LENGTH_SHORT).show()
                 val intentHome = Intent(this, HomeActivity::class.java)
                 startActivity(intentHome)
