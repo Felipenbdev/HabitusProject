@@ -4,6 +4,7 @@ import android.Manifest
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
+import android.content.Intent
 import android.icu.util.Calendar
 import android.os.Build
 import android.os.Bundle
@@ -25,6 +26,7 @@ import androidx.work.WorkManager
 import com.example.habitus.notification.NotificationHelper
 import com.example.habitus.notification.NotificationScheduler
 import com.example.habitus.notification.TarefaNotificationWorker
+import com.example.habitus.ui.login.LoginActivity
 import com.example.habitus.viewmodel.HomeViewModel
 
 class HomeActivity : AppCompatActivity() {
@@ -95,7 +97,12 @@ class HomeActivity : AppCompatActivity() {
         }
 
         buttonLogout.setOnClickListener {
-            viewModel.logout()
+            viewModel.logout() { mensagem ->
+                Toast.makeText(this, mensagem, Toast.LENGTH_SHORT).show()
+                val intentLogin = Intent(this, LoginActivity::class.java)
+                startActivity(intentLogin)
+                finish()
+            }
         }
 
         buttonAddTask.setOnClickListener {

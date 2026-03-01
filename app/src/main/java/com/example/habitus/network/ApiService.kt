@@ -4,6 +4,7 @@ import com.example.habitus.model.AuthResponse
 import com.example.habitus.model.LoginRequest
 import com.example.habitus.model.Tarefa
 import com.example.habitus.model.Usuario
+import com.example.habitus.model.UsuarioResponse
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -18,6 +19,9 @@ interface ApiService {
 
     @POST("usuarios")
     fun criarUsuario(@Body usuario: Usuario): Call<Usuario>
+
+    @GET("usuarios/me")
+    fun me(): Call<UsuarioResponse>
 
     // ---------------- Tarefas ----------------
     @GET("tarefas")

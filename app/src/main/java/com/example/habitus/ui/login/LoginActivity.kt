@@ -1,9 +1,7 @@
 package com.example.habitus.ui.login
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -14,14 +12,8 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
 import com.example.habitus.R
 import com.example.habitus.ui.register.RegisterActivity
-import com.example.habitus.model.Usuario
-import com.example.habitus.network.RetrofitInstance
 import com.example.habitus.ui.home.HomeActivity
 import com.example.habitus.viewmodel.LoginViewmodel
-import com.example.habitus.viewmodel.RegisterViewmodel
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var viewModel: LoginViewmodel
@@ -34,17 +26,17 @@ class LoginActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        // Verificar token
-        // TODO Tirar logica da Activity
-        val token = RetrofitInstance.tokenManager.getToken()
-
-        if (token != null) {
-            val intentHome = Intent(this, HomeActivity::class.java)
-            startActivity(intentHome)
-        }
 
         // Viewmodel iniciado
         viewModel = ViewModelProvider(this)[LoginViewmodel::class.java]
+
+        // Verificar token
+        viewModel.validarToken { mensagem ->
+            Toast.makeText(this, mensagem, Toast.LENGTH_SHORT).show()
+            val intentHome = Intent(this, HomeActivity::class.java)
+            startActivity(intentHome)
+            finish()
+        }
 
         // Configuração dos botões e campos
         val loginBtn = findViewById<Button>(R.id.loginLoginA)

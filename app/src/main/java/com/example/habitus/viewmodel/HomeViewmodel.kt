@@ -51,10 +51,9 @@ class HomeViewModel : ViewModel() {
         }
     }
 
-    fun logout(){
-        usuarioRepository.logout() { msg ->
-            _erro.postValue(msg)
-        }
+    fun logout(onSucess: (String) -> Unit){
+        usuarioRepository.logout()
+        onSucess("Usuario Deslogado")
     }
 
     @RequiresApi(Build.VERSION_CODES.O)

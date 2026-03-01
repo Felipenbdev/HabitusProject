@@ -4,6 +4,7 @@ import android.util.Log
 import com.example.habitus.model.AuthResponse
 import com.example.habitus.model.LoginRequest
 import com.example.habitus.model.Usuario
+import com.example.habitus.model.UsuarioResponse
 import com.example.habitus.network.RetrofitInstance
 import retrofit2.Callback
 import retrofit2.Response
@@ -50,9 +51,21 @@ class UsuarioRepository {
         })
     }
 
-    fun logout(callback: (String?) -> Unit) {
-        // TODO Tirar Usuario da home (atualmente só nega o token)
+    fun logout() {
         RetrofitInstance.tokenManager.clear()
-        callback("Usuario Deslogado")
+    }
+
+    fun validarToken(callback: (Boolean) -> Unit) {
+        api.me().enqueue(object : Callback<UsuarioResponse> {
+
+            override fun onResponse(call: Call<UsuarioResponse>, response: Response<UsuarioResponse>) {
+                callback(response.isSuccessful)
+            }
+
+            override fun onFailure(call: Call<UsuarioResponse>, t: Throwable) {
+                RetrofitInstance.tokenManager.clear()
+                callback(false)
+            }
+        })
     }
 }

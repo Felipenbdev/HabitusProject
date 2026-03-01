@@ -1,5 +1,6 @@
 package com.example.habitus.viewmodel
 
+import android.R
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -21,11 +22,18 @@ class LoginViewmodel : ViewModel() {
         }
 
         repository.login(username, senha) { _, erroMsg ->
-            Log.e("LOGIN_DEBUG","CLICOU")
             if (erroMsg != null) {
                 _erro.postValue(erroMsg)
             } else {
                 onSuccess("Logado com Sucesso")
+            }
+        }
+    }
+
+    fun validarToken(onSuccess: (String) -> Unit) {
+        repository.validarToken { validate ->
+            if(validate) {
+                onSuccess("Token já validado")
             }
         }
     }
