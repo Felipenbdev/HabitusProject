@@ -21,11 +21,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.habitus.R
 import androidx.lifecycle.ViewModelProvider
-import androidx.work.OneTimeWorkRequestBuilder
-import androidx.work.WorkManager
 import com.example.habitus.notification.NotificationHelper
 import com.example.habitus.notification.NotificationScheduler
-import com.example.habitus.notification.TarefaNotificationWorker
 import com.example.habitus.ui.login.LoginActivity
 import com.example.habitus.viewmodel.HomeViewModel
 

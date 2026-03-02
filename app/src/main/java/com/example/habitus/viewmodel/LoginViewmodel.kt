@@ -1,11 +1,8 @@
 package com.example.habitus.viewmodel
 
-import android.R
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.habitus.model.Usuario
 import com.example.habitus.repository.UsuarioRepository
 
 class LoginViewmodel : ViewModel() {
