@@ -1,19 +1,18 @@
 package com.example.habitus.viewmodel
 
-import android.app.Notification
-import android.content.Context
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.habitus.model.Tarefa
-import com.example.habitus.notification.NotificationScheduler
 import com.example.habitus.repository.TarefaRepository
+import com.example.habitus.repository.UsuarioRepository
 
 class HomeViewModel : ViewModel() {
 
     private val repository = TarefaRepository()
+    private val usuarioRepository = UsuarioRepository()
 
     private val _tarefas = MutableLiveData<List<Tarefa>>()
     val tarefas: LiveData<List<Tarefa>> = _tarefas
@@ -50,6 +49,11 @@ class HomeViewModel : ViewModel() {
                 carregarTarefas()
             }
         }
+    }
+
+    fun logout(onSucess: (String) -> Unit){
+        usuarioRepository.logout()
+        onSucess("Usuario Deslogado")
     }
 
     @RequiresApi(Build.VERSION_CODES.O)

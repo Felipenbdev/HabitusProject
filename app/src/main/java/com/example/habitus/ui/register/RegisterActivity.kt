@@ -1,6 +1,5 @@
 package com.example.habitus.ui.register
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
@@ -12,14 +11,8 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
 import com.example.habitus.R
-import com.example.habitus.model.Usuario
-import com.example.habitus.network.RetrofitInstance
 import com.example.habitus.ui.login.LoginActivity
-import com.example.habitus.viewmodel.HomeViewModel
 import com.example.habitus.viewmodel.RegisterViewmodel
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class RegisterActivity : AppCompatActivity() {
     private lateinit var viewModel: RegisterViewmodel
