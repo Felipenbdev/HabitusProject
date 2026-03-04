@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">Habitus</string>
+    <string name="novo_usuario">Novo Usuário</string>
+    <string name="registre_se">REGISTRE-SE</string>
+    <string name="nova_senha">Nova Senha</string>
+    <string name="confirmar_senha">Confirmar Senha</string>
+    <string name="criar_conta">Criar Conta</string>
+    <string name="ja_possui_uma_conta">Já possui uma conta?</string>
+    <string name="fazer_login">Fazer login</string>
+    <string name="login">LOGIN</string>
+    <string name="usuario">Usuário</string>
+    <string name="digite_seu_usuario">Digite seu usuário</string>
+    <string name="senha">Senha</string>
+    <string name="digite_sua_senha">Digite sua senha</string>
+    <string name="iniciar_sessao">Iniciar sessão</string>
+    <string name="ainda_nao_possui_uma_conta">Ainda não possui uma conta?</string>
+    <string name="registrar_se">Registrar-se</string>
 </resources>

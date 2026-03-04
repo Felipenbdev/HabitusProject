@@ -2,9 +2,11 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#000000"
+    android:background="#0C0C0C"
     android:padding="24dp">
 
     <ImageView
@@ -13,10 +15,10 @@
         android:layout_height="60dp"
         android:layout_marginTop="40dp"
         android:src="@drawable/ic_logo_habitus"
+        android:contentDescription="@string/app_name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
@@ -24,9 +26,10 @@
         app:cardBackgroundColor="#121212"
         app:cardCornerRadius="8dp"
         app:cardElevation="0dp"
+        app:strokeWidth="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imgLogo"
-        app:layout_constraintVertical_bias="0.8">
+        app:layout_constraintVertical_bias="0.4">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -37,7 +40,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="REGISTRE-SE"
+                android:text="@string/registre_se"
                 android:textColor="#FFFFFF"
                 android:textSize="24sp"
                 android:textStyle="bold"
@@ -45,59 +48,68 @@
                 android:layout_marginBottom="32dp"/>
 
             <TextView
+                android:id="@+id/labelNovoUsuario"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Novo Usuário"
+                android:text="@string/novo_usuario"
                 android:textColor="#FFFFFF"
-                android:layout_marginBottom="8dp"/>
+                android:layout_marginBottom="8dp"
+                android:labelFor="@id/usernameRegisA"/>
 
             <EditText
                 android:id="@+id/usernameRegisA"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="#EEEEEE"
-                android:paddingLeft="12dp"
+                android:paddingStart="12dp"
                 android:layout_marginBottom="16dp"
-                android:inputType="textPersonName"/>
+                android:inputType="textPersonName"
+                tools:ignore="RtlSymmetry" />
 
             <TextView
+                android:id="@+id/labelNovaSenha"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Nova Senha"
+                android:text="@string/nova_senha"
                 android:textColor="#FFFFFF"
-                android:layout_marginBottom="8dp"/>
+                android:layout_marginBottom="8dp"
+                android:labelFor="@id/passwordRegistA"/>
 
             <EditText
                 android:id="@+id/passwordRegistA"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="#EEEEEE"
-                android:paddingLeft="12dp"
+                android:paddingStart="12dp"
                 android:layout_marginBottom="16dp"
-                android:inputType="textPassword"/>
+                android:inputType="textPassword"
+                tools:ignore="RtlSymmetry" />
 
             <TextView
+                android:id="@+id/labelConfirmarSenha"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Confirmar Senha"
+                android:text="@string/confirmar_senha"
                 android:textColor="#FFFFFF"
-                android:layout_marginBottom="8dp"/>
+                android:layout_marginBottom="8dp"
+                android:labelFor="@id/confirmPasswordRegisA"/>
 
             <EditText
                 android:id="@+id/confirmPasswordRegisA"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="#EEEEEE"
-                android:paddingLeft="12dp"
+                android:paddingStart="12dp"
                 android:layout_marginBottom="32dp"
-                android:inputType="textPassword"/>
+                android:inputType="textPassword"
+                tools:ignore="RtlSymmetry" />
 
             <Button
                 android:id="@+id/registerRegisA"
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
                 android:backgroundTint="#8E24CC"
-                android:text="Criar Conta"
+                android:text="@string/criar_conta"
                 android:textAllCaps="false"
                 android:textColor="#FFFFFF"
                 app:cornerRadius="8dp" />
@@ -105,21 +117,24 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Já possui uma conta?"
+                android:text="@string/ja_possui_uma_conta"
                 android:textColor="#888888"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="24dp"/>
+                android:layout_marginTop="24dp"
+                android:textAlignment="center"/>
 
-            <TextView
+            <Button
                 android:id="@+id/loginRegisA"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Fazer login"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="4dp"
+                android:text="@string/fazer_login"
+                android:textAllCaps="false"
                 android:textColor="#FFFFFF"
                 android:textSize="16sp"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="8dp"
-                android:padding="8dp"/>
+                android:textStyle="normal" />
 
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
