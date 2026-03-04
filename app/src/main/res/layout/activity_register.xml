@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
@@ -13,11 +14,11 @@
         android:layout_width="180dp"
         android:layout_height="60dp"
         android:layout_marginTop="40dp"
-        android:src="@drawable/ic_logo_habitus"
+        android:src="@drawable/logo_habitus"
         android:contentDescription="@string/app_name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
@@ -28,10 +29,9 @@
         app:strokeWidth="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imgLogo"
-        app:layout_constraintVertical_bias="0.4">
+        app:layout_constraintVertical_bias="0.8">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/passwordRegistA"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -48,7 +48,7 @@
                 android:layout_marginBottom="32dp"/>
 
             <TextView
-                android:id="@+id/labelNovoUsuario"
+                android:id="@+id/tvLabelUsuario"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/novo_usuario"
@@ -64,10 +64,11 @@
                 android:paddingStart="12dp"
                 android:layout_marginBottom="16dp"
                 android:inputType="textPersonName"
+                android:importantForAutofill="no"
                 tools:ignore="RtlSymmetry" />
 
             <TextView
-                android:id="@+id/labelNovaSenha"
+                android:id="@+id/tvLabelSenha"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/nova_senha"
@@ -83,10 +84,11 @@
                 android:paddingStart="12dp"
                 android:layout_marginBottom="16dp"
                 android:inputType="textPassword"
+                android:importantForAutofill="no"
                 tools:ignore="RtlSymmetry" />
 
             <TextView
-                android:id="@+id/labelConfirmarSenha"
+                android:id="@+id/tvLabelConfirmarSenha"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/confirmar_senha"
@@ -102,6 +104,7 @@
                 android:paddingStart="12dp"
                 android:layout_marginBottom="32dp"
                 android:inputType="textPassword"
+                android:importantForAutofill="no"
                 tools:ignore="RtlSymmetry" />
 
             <Button
@@ -139,23 +142,4 @@
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 
-    <Button
-        android:id="@+id/registerRegisA"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:text="Register"
-        app:layout_constraintEnd_toEndOf="@+id/textInputLayout3"
-        app:layout_constraintStart_toStartOf="@+id/textInputLayout3"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout3" />
-
-    <Button
-        android:id="@+id/loginRegisA"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="Login"
-        app:layout_constraintEnd_toEndOf="@+id/registerRegisA"
-        app:layout_constraintStart_toStartOf="@+id/registerRegisA"
-        app:layout_constraintTop_toBottomOf="@+id/registerRegisA" />
 </androidx.constraintlayout.widget.ConstraintLayout>
