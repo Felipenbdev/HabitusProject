@@ -5,40 +5,139 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.register.RegisterActivity">
+    android:background="#0C0C0C"
+    android:padding="24dp">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayout"
-        android:layout_width="409dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="150dp"
+    <ImageView
+        android:id="@+id/imgLogo"
+        android:layout_width="180dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="40dp"
+        android:src="@drawable/ic_logo_habitus"
+        android:contentDescription="@string/app_name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/usernameRegisA"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Username"
-            android:textColor="#FFFFFFFF" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayout3"
-        android:layout_width="409dp"
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="@+id/textInputLayout"
-        app:layout_constraintStart_toStartOf="@+id/textInputLayout"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
+        app:cardBackgroundColor="#121212"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="0dp"
+        app:strokeWidth="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgLogo"
+        app:layout_constraintVertical_bias="0.4">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/passwordRegistA"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Password"
-            android:textColor="#FFFFFFFF" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:orientation="vertical"
+            android:padding="32dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/registre_se"
+                android:textColor="#FFFFFF"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="32dp"/>
+
+            <TextView
+                android:id="@+id/labelNovoUsuario"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/novo_usuario"
+                android:textColor="#FFFFFF"
+                android:layout_marginBottom="8dp"
+                android:labelFor="@id/usernameRegisA"/>
+
+            <EditText
+                android:id="@+id/usernameRegisA"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#EEEEEE"
+                android:paddingStart="12dp"
+                android:layout_marginBottom="16dp"
+                android:inputType="textPersonName"
+                tools:ignore="RtlSymmetry" />
+
+            <TextView
+                android:id="@+id/labelNovaSenha"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/nova_senha"
+                android:textColor="#FFFFFF"
+                android:layout_marginBottom="8dp"
+                android:labelFor="@id/passwordRegistA"/>
+
+            <EditText
+                android:id="@+id/passwordRegistA"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#EEEEEE"
+                android:paddingStart="12dp"
+                android:layout_marginBottom="16dp"
+                android:inputType="textPassword"
+                tools:ignore="RtlSymmetry" />
+
+            <TextView
+                android:id="@+id/labelConfirmarSenha"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/confirmar_senha"
+                android:textColor="#FFFFFF"
+                android:layout_marginBottom="8dp"
+                android:labelFor="@id/confirmPasswordRegisA"/>
+
+            <EditText
+                android:id="@+id/confirmPasswordRegisA"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#EEEEEE"
+                android:paddingStart="12dp"
+                android:layout_marginBottom="32dp"
+                android:inputType="textPassword"
+                tools:ignore="RtlSymmetry" />
+
+            <Button
+                android:id="@+id/registerRegisA"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:backgroundTint="#8E24CC"
+                android:text="@string/criar_conta"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                app:cornerRadius="8dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/ja_possui_uma_conta"
+                android:textColor="#888888"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="24dp"
+                android:textAlignment="center"/>
+
+            <Button
+                android:id="@+id/loginRegisA"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="4dp"
+                android:text="@string/fazer_login"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp"
+                android:textStyle="normal" />
+
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
 
     <Button
         android:id="@+id/registerRegisA"

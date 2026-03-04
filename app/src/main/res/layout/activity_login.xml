@@ -5,7 +5,8 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.login.LoginActivity">
+    android:background="#0C0C0C"
+    android:padding="24dp">
 
     <Button
         android:id="@+id/loginLoginA"
@@ -20,24 +21,98 @@
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="160dp"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@+id/loginLoginA"
-        app:layout_constraintTop_toTopOf="@+id/loginLoginA"
-        tools:layout_editor_absoluteX="1dp">
+        app:cardBackgroundColor="#121212"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="0dp"
+        app:strokeWidth="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgLogo"
+        app:layout_constraintVertical_bias="0.4">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/usernameLoginA"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Username"
-            android:textColor="#FFFFFF" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:orientation="vertical"
+            android:padding="32dp">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="159dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@+id/loginLoginA"
-        app:layout_constraintStart_toEndOf="@+id/loginLoginA"
-        app:layout_constraintTop_toTopOf="@+id/loginLoginA">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="32dp"
+                android:text="@string/login"
+                android:textColor="#FFFFFF"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/usuario"
+                android:textColor="#FFFFFF"
+                android:layout_marginBottom="8dp"/>
+
+            <EditText
+                android:id="@+id/usernameLoginA"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#EEEEEE"
+                android:hint="@string/digite_seu_usuario"
+                android:paddingStart="12dp"
+                android:layout_marginBottom="16dp"
+                android:inputType="textPersonName"
+                tools:ignore="RtlSymmetry" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/senha"
+                android:textColor="#FFFFFF"
+                android:layout_marginBottom="8dp"/>
+
+            <EditText
+                android:id="@+id/passwordLoginA"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#EEEEEE"
+                android:hint="@string/digite_sua_senha"
+                android:paddingStart="12dp"
+                android:layout_marginBottom="32dp"
+                android:inputType="textPassword"
+                tools:ignore="RtlSymmetry" />
+
+            <Button
+                android:id="@+id/loginLoginA"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:backgroundTint="#8E24CC"
+                android:text="@string/iniciar_sessao"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                app:cornerRadius="8dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/ainda_nao_possui_uma_conta"
+                android:textColor="#888888"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="24dp"
+                android:textAlignment="center"/>
+
+            <Button
+                android:id="@+id/registerLoginA"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="4dp"
+                android:text="@string/registrar_se"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp"
+                android:textStyle="normal" />
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/passwordLoginA"
