@@ -3,7 +3,6 @@ package com.example.habitus.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.habitus.model.Usuario
 import com.example.habitus.repository.UsuarioRepository
 
 class LoginViewmodel : ViewModel() {
@@ -24,6 +23,14 @@ class LoginViewmodel : ViewModel() {
                 _erro.postValue(erroMsg)
             } else {
                 onSuccess("Logado com Sucesso")
+            }
+        }
+    }
+
+    fun validarToken(onSuccess: (String) -> Unit) {
+        repository.validarToken { validate ->
+            if(validate) {
+                onSuccess("Token já validado")
             }
         }
     }

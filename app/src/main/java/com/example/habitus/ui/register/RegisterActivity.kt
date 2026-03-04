@@ -1,6 +1,5 @@
 package com.example.habitus.ui.register
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
@@ -12,14 +11,8 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
 import com.example.habitus.R
-import com.example.habitus.model.Usuario
-import com.example.habitus.network.RetrofitInstance
 import com.example.habitus.ui.login.LoginActivity
-import com.example.habitus.viewmodel.HomeViewModel
 import com.example.habitus.viewmodel.RegisterViewmodel
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class RegisterActivity : AppCompatActivity() {
     private lateinit var viewModel: RegisterViewmodel
@@ -61,24 +54,4 @@ class RegisterActivity : AppCompatActivity() {
             startActivity(intentLogin)
         }
     }
-
-//    private fun adicionarUsuario(username: String, senha: String, context: Context) {
-//        val novoUsuario = Usuario(username = username, senha = senha)
-//
-//        val call = RetrofitInstance.api.criarUsuario(novoUsuario)
-//
-//        call.enqueue(object : Callback<Usuario> {
-//            override fun onResponse(call: Call<Usuario>, response: Response<Usuario>) {
-//                if (response.isSuccessful) {
-//                    val usuarioCriado = response.body()
-//                    Toast.makeText(context, "Usuário criado: ${usuarioCriado?.username}", Toast.LENGTH_SHORT).show()
-//                } else {
-//                    Toast.makeText(context, "Erro ao criar usuário: ${response.code()}", Toast.LENGTH_SHORT).show()
-//                }
-//            }
-//            override fun onFailure(call: Call<Usuario>, t: Throwable) {
-//                Toast.makeText(context, "Falha de conexão: ${t.message}", Toast.LENGTH_SHORT).show()
-//            }
-//        })
-//    }
 }

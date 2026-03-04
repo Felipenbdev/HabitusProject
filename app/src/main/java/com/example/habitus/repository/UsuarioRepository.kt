@@ -1,6 +1,10 @@
 package com.example.habitus.repository
 
+import android.util.Log
+import com.example.habitus.model.AuthResponse
+import com.example.habitus.model.LoginRequest
 import com.example.habitus.model.Usuario
+import com.example.habitus.model.UsuarioResponse
 import com.example.habitus.network.RetrofitInstance
 import retrofit2.Callback
 import retrofit2.Response
@@ -25,18 +29,42 @@ class UsuarioRepository {
         })
     }
 
-    fun login(username: String, senha: String, callback: (Usuario?, String?) -> Unit){
-        api.login(username, senha).enqueue(object : Callback<Usuario> {
-            override fun onResponse(call: Call<Usuario?>, response: Response<Usuario?>) {
+    fun login(username: String, senha: String, callback: (AuthResponse?, String?) -> Unit){
+        val request = LoginRequest(username, senha)
+        api.login(request).enqueue(object : Callback<AuthResponse> {
+            override fun onResponse(call: Call<AuthResponse?>, response: Response<AuthResponse?>) {
                 if (response.isSuccessful) {
-                    callback(response.body(), null)
+                    val token = response.body()?.token
+                    if (token != null) {
+                        RetrofitInstance.tokenManager.saveToken(token)
+                        callback(response.body(), null)
+                    }
                 } else {
                     callback(null, "Erro: ${response.code()}")
                 }
             }
 
-            override fun onFailure(call: Call<Usuario?>, t: Throwable) {
+            override fun onFailure(call: Call<AuthResponse?>, t: Throwable) {
+                Log.e("LOGIN_DEBUG","FALHOU")
                 callback(null, t.message)
+            }
+        })
+    }
+
+    fun logout() {
+        RetrofitInstance.tokenManager.clear()
+    }
+
+    fun validarToken(callback: (Boolean) -> Unit) {
+        api.me().enqueue(object : Callback<UsuarioResponse> {
+
+            override fun onResponse(call: Call<UsuarioResponse>, response: Response<UsuarioResponse>) {
+                callback(response.isSuccessful)
+            }
+
+            override fun onFailure(call: Call<UsuarioResponse>, t: Throwable) {
+                RetrofitInstance.tokenManager.clear()
+                callback(false)
             }
         })
     }

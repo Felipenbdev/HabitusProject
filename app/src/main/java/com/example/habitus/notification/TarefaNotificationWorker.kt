@@ -14,9 +14,16 @@ class TarefaNotificationWorker(
     @RequiresPermission(Manifest.permission.POST_NOTIFICATIONS)
     override suspend fun doWork(): Result {
 
+        val id = inputData.getLong("id", -1)
         val descricao = inputData.getString("descricao") ?: return Result.failure()
+        val datahora = inputData.getString("datahora") ?: ""
 
-        NotificationHelper.showNotification(applicationContext, descricao)
+        NotificationHelper.showNotification(
+            applicationContext,
+            id,
+            descricao,
+            datahora
+        )
 
         return Result.success()
     }

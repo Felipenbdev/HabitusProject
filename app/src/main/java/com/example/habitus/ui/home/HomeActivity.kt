@@ -4,6 +4,7 @@ import android.Manifest
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
+import android.content.Intent
 import android.icu.util.Calendar
 import android.os.Build
 import android.os.Bundle
@@ -20,11 +21,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.habitus.R
 import androidx.lifecycle.ViewModelProvider
-import androidx.work.OneTimeWorkRequestBuilder
-import androidx.work.WorkManager
 import com.example.habitus.notification.NotificationHelper
 import com.example.habitus.notification.NotificationScheduler
-import com.example.habitus.notification.TarefaNotificationWorker
+import com.example.habitus.ui.login.LoginActivity
 import com.example.habitus.viewmodel.HomeViewModel
 
 class HomeActivity : AppCompatActivity() {
@@ -59,6 +58,7 @@ class HomeActivity : AppCompatActivity() {
 
         // Configuração dos botões e campos
         val buttonShowTasks = findViewById<Button>(R.id.showTasks)
+        val buttonLogout = findViewById<Button>(R.id.logout)
         val buttonAddTask = findViewById<Button>(R.id.buttonAddTarefa)
         val descricaoText = findViewById<EditText>(R.id.Descricao)
         val buttonData = findViewById<Button>(R.id.Selectdata)
@@ -91,6 +91,15 @@ class HomeActivity : AppCompatActivity() {
 
         buttonShowTasks.setOnClickListener {
             viewModel.carregarTarefas()
+        }
+
+        buttonLogout.setOnClickListener {
+            viewModel.logout() { mensagem ->
+                Toast.makeText(this, mensagem, Toast.LENGTH_SHORT).show()
+                val intentLogin = Intent(this, LoginActivity::class.java)
+                startActivity(intentLogin)
+                finish()
+            }
         }
 
         buttonAddTask.setOnClickListener {
