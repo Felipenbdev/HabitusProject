@@ -8,53 +8,52 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.habitus.R
 import com.example.habitus.model.Tarefa
 
+// TaskListAdapter.kt
 class TaskListAdapter(
-    private var tasks: List<Tarefa>,
     private val onTaskToggled: (Tarefa) -> Unit
 ) : RecyclerView.Adapter<TaskListAdapter.ViewHolder>() {
+
+    private var tasks: List<Tarefa> = emptyList()
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val taskCheckbox: CheckBox = view.findViewById(R.id.taskCheckbox)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.task_item, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.task_item, parent, false)
         return ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val task = tasks[position]
 
-        // Remove listener antigo para evitar bug de reciclagem
-        holder.taskCheckbox.setOnCheckedChangeListener(null)
+        holder.taskCheckbox.apply {
+            setOnCheckedChangeListener(null) // Evita loops de feedback
+            text = task.descricao
+            isChecked = task.ativo ?: false
 
-        // Define texto e estado
-        holder.taskCheckbox.text = task.descricao
-        holder.taskCheckbox.isChecked = task.ativo ?: false
+            // Melhoria visual: Riscar o texto se estiver concluído
+            paintFlags = if (isChecked) {
+                paintFlags or android.graphics.Paint.STRIKE_THRU_TEXT_FLAG
+            } else {
+                paintFlags and android.graphics.Paint.STRIKE_THRU_TEXT_FLAG.inv()
+            }
 
-        // Novo listener
-        holder.taskCheckbox.setOnCheckedChangeListener { _, _ ->
-            onTaskToggled(task)
+            setOnClickListener { onTaskToggled(task) }
         }
-    }
-
-    fun updateSingleTask(updated: Tarefa): Int {
-        val index = tasks.indexOfFirst { it.id == updated.id }
-        if (index != -1) {
-            val mutableList = tasks.toMutableList()
-            mutableList[index] = updated
-            tasks = mutableList
-            notifyItemChanged(index) // só atualiza a posição
-        }
-        return index
     }
 
     override fun getItemCount() = tasks.size
 
-    // Função para atualizar a lista de tarefas no adapter
     fun updateTasks(newTasks: List<Tarefa>) {
+        val diffCallback = object : androidx.recyclerview.widget.DiffUtil.Callback() {
+            override fun getOldListSize() = tasks.size
+            override fun getNewListSize() = newTasks.size
+            override fun areItemsTheSame(oldPos: Int, newPos: Int) = tasks[oldPos].id == newTasks[newPos].id
+            override fun areContentsTheSame(oldPos: Int, newPos: Int) = tasks[oldPos] == newTasks[newPos]
+        }
+        val diffResult = androidx.recyclerview.widget.DiffUtil.calculateDiff(diffCallback)
         tasks = newTasks
-        notifyDataSetChanged()
+        diffResult.dispatchUpdatesTo(this)
     }
 }

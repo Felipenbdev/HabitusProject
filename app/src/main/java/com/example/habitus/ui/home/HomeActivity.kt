@@ -10,6 +10,7 @@ import android.os.Build
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.annotation.RequiresApi
@@ -63,6 +64,7 @@ class HomeActivity : AppCompatActivity() {
         val descricaoText = findViewById<EditText>(R.id.Descricao)
         val buttonData = findViewById<Button>(R.id.Selectdata)
 
+        val tvUserName = findViewById<TextView>(R.id.tvUserName)
 
         val calendario = Calendar.getInstance()
 
@@ -72,6 +74,10 @@ class HomeActivity : AppCompatActivity() {
         // Observers
         viewModel.tarefas.observe(this) { tasks ->
             taskListAdapter.updateTasks(tasks)
+        }
+
+        viewModel.username.observe(this) { username ->
+            tvUserName.text = username
         }
 
         viewModel.erro.observe(this) { mensagem ->
@@ -111,12 +117,13 @@ class HomeActivity : AppCompatActivity() {
 
         // Carrega as tarefas ao iniciar a atividade
         viewModel.carregarTarefas()
+        viewModel.getUsername()
     }
 
     private fun setupRecyclerView() {
         recyclerView = findViewById(R.id.recyclerViewTasks)
         // Inicializa o adapter com uma lista vazia e a função de callback para o toggle
-        taskListAdapter = TaskListAdapter(emptyList()) { tarefa ->
+        taskListAdapter = TaskListAdapter { tarefa ->
             viewModel.toggleTarefa(tarefa)
         }
         recyclerView.adapter = taskListAdapter

@@ -1,19 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/main"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#0C0C0C"
+    android:background="?android:attr/windowBackground"
     android:padding="24dp">
 
     <ImageView
         android:id="@+id/imgLogo"
         android:layout_width="180dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="60dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="48dp"
         android:src="@drawable/logo_habitus"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,10 +20,11 @@
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardBackgroundColor="#121212"
-        app:cardCornerRadius="8dp"
-        app:cardElevation="0dp"
-        app:strokeWidth="0dp"
+        app:cardBackgroundColor="?attr/colorSurface"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="4dp"
+        app:strokeColor="?attr/colorOutlineVariant"
+        app:strokeWidth="1dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imgLogo"
         app:layout_constraintVertical_bias="0.4">
@@ -34,87 +33,65 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="32dp">
+            android:padding="24dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="32dp"
+                android:layout_marginBottom="24dp"
                 android:text="@string/login"
-                android:textColor="#FFFFFF"
-                android:textSize="24sp"
-                android:textStyle="bold" />
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
+                android:textStyle="bold"
+                android:textColor="?attr/colorOnSurface" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/usuario"
-                android:textColor="#FFFFFF"
-                android:layout_marginBottom="8dp"/>
-
-            <EditText
-                android:id="@+id/usernameLoginA"
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:background="#EEEEEE"
-                android:hint="@string/digite_seu_usuario"
-                android:paddingStart="12dp"
-                android:layout_marginBottom="16dp"
-                android:inputType="textPersonName"
-                tools:ignore="RtlSymmetry" />
-
-            <TextView
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/senha"
-                android:textColor="#FFFFFF"
-                android:layout_marginBottom="8dp"/>
+                android:hint="@string/usuario">
 
-            <EditText
-                android:id="@+id/passwordLoginA"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/usernameLoginA"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:background="#EEEEEE"
-                android:hint="@string/digite_sua_senha"
-                android:paddingStart="12dp"
-                android:layout_marginBottom="32dp"
-                android:inputType="textPassword"
-                tools:ignore="RtlSymmetry" />
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:hint="@string/senha"
+                app:passwordToggleEnabled="true">
 
-            <Button
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/passwordLoginA"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/loginLoginA"
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
-                android:backgroundTint="#8E24CC"
+                android:layout_marginTop="32dp"
                 android:text="@string/iniciar_sessao"
                 android:textAllCaps="false"
-                android:textColor="#FFFFFF"
                 app:cornerRadius="8dp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/ainda_nao_possui_uma_conta"
-                android:textColor="#888888"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="24dp"
-                android:textAlignment="center"/>
-
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/registerLoginA"
                 style="@style/Widget.MaterialComponents.Button.TextButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="4dp"
+                android:layout_marginTop="16dp"
                 android:text="@string/registrar_se"
-                android:textAllCaps="false"
-                android:textColor="#FFFFFF"
-                android:textSize="16sp"
-                android:textStyle="normal" />
+                android:textAllCaps="false" />
 
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

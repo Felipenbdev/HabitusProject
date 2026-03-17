@@ -32,6 +32,7 @@ class RegisterActivity : AppCompatActivity() {
         val registerbtn = findViewById<Button>(R.id.registerRegisA)
         val usernameText = findViewById<EditText>(R.id.usernameRegisA)
         val passwordText = findViewById<EditText>(R.id.passwordRegistA)
+        val confirmePasswordText = findViewById<EditText>(R.id.confirmPasswordRegisA)
         val loginBtn = findViewById<Button>(R.id.loginRegisA)
 
         // Observers
@@ -41,11 +42,12 @@ class RegisterActivity : AppCompatActivity() {
 
         // Listeners
         registerbtn.setOnClickListener {
-            viewModel.criarUsuario(usernameText.text.toString(), passwordText.text.toString()) { mensagem ->
+            viewModel.criarUsuario(usernameText.text.toString(), passwordText.text.toString(), confirmePasswordText.text.toString()) { mensagem ->
                 Toast.makeText(this, mensagem, Toast.LENGTH_SHORT).show()
                 // Limpa os campos após adicionar
                 usernameText.text.clear()
                 passwordText.text.clear()
+                confirmePasswordText.text.clear()
             }
         }
 

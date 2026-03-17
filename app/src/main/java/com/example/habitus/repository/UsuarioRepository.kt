@@ -45,7 +45,6 @@ class UsuarioRepository {
             }
 
             override fun onFailure(call: Call<AuthResponse?>, t: Throwable) {
-                Log.e("LOGIN_DEBUG","FALHOU")
                 callback(null, t.message)
             }
         })
@@ -53,6 +52,18 @@ class UsuarioRepository {
 
     fun logout() {
         RetrofitInstance.tokenManager.clear()
+    }
+
+    fun getUsername(callback: (String?, String?) -> Unit) {
+        api.me().enqueue(object : Callback<UsuarioResponse>{
+            override fun onResponse(call: Call<UsuarioResponse>, response: Response<UsuarioResponse>) {
+                callback(response.body()?.username, null)
+            }
+
+            override fun onFailure(call: Call<UsuarioResponse>, t: Throwable) {
+                callback(null, t.message)
+            }
+        })
     }
 
     fun validarToken(callback: (Boolean) -> Unit) {

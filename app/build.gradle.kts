@@ -20,10 +20,10 @@ android {
 
     buildTypes {
         debug {
-            buildConfigField ("String", "BASE_URL", "\"http://10.0.2.2:8080/\"")
+            buildConfigField ("String", "BASE_URL", "\"https://apihabitusproject-production.up.railway.app/\"")
         }
         release {
-            buildConfigField ("String", "BASE_URL", "\"https://sua-api-producao.com/\"")
+            buildConfigField ("String", "BASE_URL", "\"https://apihabitusproject-production.up.railway.app/\"")
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),

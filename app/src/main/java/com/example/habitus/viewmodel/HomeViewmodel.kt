@@ -1,6 +1,7 @@
 package com.example.habitus.viewmodel
 
 import android.os.Build
+import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -22,6 +23,9 @@ class HomeViewModel : ViewModel() {
 
     private val _notificar = MutableLiveData<Tarefa>()
     val notificar: LiveData<Tarefa> = _notificar
+
+    private val _username = MutableLiveData<String>()
+    val username: LiveData<String> = _username
 
     private val _AtualizarNotificacao = MutableLiveData<Tarefa>()
     val AtualizarNotificacao: LiveData<Tarefa> = _AtualizarNotificacao
@@ -54,6 +58,17 @@ class HomeViewModel : ViewModel() {
     fun logout(onSucess: (String) -> Unit){
         usuarioRepository.logout()
         onSucess("Usuario Deslogado")
+    }
+
+    fun getUsername(){
+        usuarioRepository.getUsername { username, erroMsg ->
+            if(erroMsg != null){
+                _erro.postValue(erroMsg)
+            } else {
+                Log.e("USERERROR", "postou")
+                _username.postValue(username)
+            }
+        }
     }
 
     @RequiresApi(Build.VERSION_CODES.O)

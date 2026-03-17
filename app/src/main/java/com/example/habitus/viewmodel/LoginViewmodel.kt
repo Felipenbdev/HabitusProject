@@ -14,7 +14,7 @@ class LoginViewmodel : ViewModel() {
 
     fun login(username: String, senha: String, onSuccess: (String) -> Unit){
         if (username.isEmpty() || senha.isEmpty()) {
-            _erro.postValue("Username e senha são obrigatórios.")
+            _erro.postValue("Usuário e senha são obrigatórios!")
             return
         }
 
