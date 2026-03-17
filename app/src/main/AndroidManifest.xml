@@ -10,9 +10,9 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@drawable/iconhabitus_background"
+        android:icon="@drawable/iconhabitus_nobackground"
         android:label="@string/app_name"
-        android:roundIcon="@drawable/iconhabitus_background"
+        android:roundIcon="@drawable/iconhabitus_nobackground"
         android:supportsRtl="true"
         android:theme="@style/Theme.Habitus"
         android:usesCleartextTraffic="true">

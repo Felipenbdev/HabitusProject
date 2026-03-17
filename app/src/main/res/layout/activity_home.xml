@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
@@ -13,37 +12,39 @@
         android:id="@+id/headerLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center_vertical"
         android:orientation="horizontal"
         android:padding="24dp"
-        android:gravity="center_vertical"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:id="@+id/imgLogoHome"
-            android:layout_width="139dp"
-            android:layout_height="75dp"
+            android:layout_width="120dp"
+            android:layout_height="60dp"
             android:contentDescription="@string/app_name"
-            android:src="@drawable/logo_habitus" />
+            android:src="@drawable/logo_habitus"/>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginStart="16dp">
+            android:layout_marginStart="16dp"
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:alpha="0.7"
                 android:text="Seja bem-vindo(a),"
-                android:textSize="24sp" />
+                android:textColor="?attr/colorOnBackground"
+                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/tvUserName"
-                android:layout_width="133dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Usuário"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+                android:textColor="?attr/colorOnBackground"
                 android:textStyle="bold" />
         </LinearLayout>
     </LinearLayout>
@@ -53,14 +54,14 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
+        app:cardBackgroundColor="?attr/colorSurfaceVariant"
         app:cardCornerRadius="12dp"
         app:cardElevation="4dp"
-        app:cardBackgroundColor="?attr/colorSurface"
-        app:strokeColor="?attr/colorOutlineVariant"
-        app:strokeWidth="1dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/headerLayout">
+        app:layout_constraintTop_toBottomOf="@id/headerLayout"
+        app:strokeColor="?attr/colorOutlineVariant"
+        app:strokeWidth="1dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -73,6 +74,7 @@
                 android:layout_height="wrap_content"
                 android:text="Adicionar Nova Tarefa"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+                android:textColor="?attr/colorOnSurfaceVariant"
                 android:textStyle="bold" />
 
             <com.google.android.material.textfield.TextInputLayout
@@ -86,7 +88,8 @@
                     android:id="@+id/Descricao"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textCapSentences" />
+                    android:inputType="textCapSentences"
+                    android:textColor="?attr/colorOnSurface" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <LinearLayout
@@ -100,8 +103,8 @@
                     style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:layout_marginEnd="8dp"
+                    android:layout_weight="1"
                     android:text="Data e Hora"
                     app:icon="@android:drawable/ic_menu_my_calendar" />
 
@@ -139,8 +142,8 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewTasks"
-        android:layout_width="392dp"
-        android:layout_height="345dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:clipToPadding="false"
         android:paddingTop="8dp"
         android:paddingBottom="16dp"
